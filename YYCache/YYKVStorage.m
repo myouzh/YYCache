@@ -765,10 +765,10 @@ static void _finalizeStatement(const void *key, const void *value, void *context
 }
 
 - (void)dealloc {
-    UIBackgroundTaskIdentifier taskID = [[UIApplication sharedExtensionApplication] beginBackgroundTaskWithExpirationHandler:^{}];
+    UIBackgroundTaskIdentifier taskID = [_YYSharedApplication() beginBackgroundTaskWithExpirationHandler:^{}];
     [self _dbClose];
     if (taskID != UIBackgroundTaskInvalid) {
-        [[UIApplication sharedExtensionApplication] endBackgroundTask:taskID];
+        [_YYSharedApplication() endBackgroundTask:taskID];
     }
 }
 
